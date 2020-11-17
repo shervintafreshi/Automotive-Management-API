@@ -35,7 +35,7 @@ module.exports = function () {
 
         // The following works for localhost...
         // Replace the database name with your own value
-        const uri = "mongodb+srv://Shervin:5473900@cluster0-syspz.mongodb.net/test?retryWrites=true&w=majority";
+        // const uri = "private_cluster_uri";
         mongoose.connect(uri, {dbName: 'db-a1', connectTimeoutMS: 5000, useUnifiedTopology: true });
         
         // This one works for MongoDB Atlas...
