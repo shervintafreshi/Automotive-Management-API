@@ -47,7 +47,7 @@ app.get("/api", (req, res) => {
     "apiName": "Vehicle Web API",
     "apiDescription": "assignment 1 web-api",
     "apiVersion": "1.0", 
-    "apiAuthor": "Peter McIntyre",
+    "apiAuthor": "Shervin Tafreshipour",
     "links": links
   };
   res.json(linkObject);
