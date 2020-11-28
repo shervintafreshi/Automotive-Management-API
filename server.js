@@ -39,7 +39,6 @@ app.get("/", (req, res) => {
 
 app.get("/api", (req, res) => {
   // Here are the resources that are available for users of this web API...
-  // YOU MUST EDIT THIS COLLECTION
   const links = [];
   // This app's resources...
   links.push({ "rel": "collection", "href": "/api/cars", "methods": "GET,POST" });
