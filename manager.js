@@ -17,7 +17,7 @@ const carSchema = require('./schema.js');
 
 module.exports = function () {
 
-  // Collection properties, which get their values upon connecting to the database
+  // Collection properties
   let Cars;
 
   return {
@@ -33,22 +33,15 @@ module.exports = function () {
 
         const uri = "";   // const uri = "private_cluster_uri";
         mongoose.connect(uri, {dbName: 'db-a1', connectTimeoutMS: 5000, useUnifiedTopology: true });
-        
         var db = mongoose.connection;
-        
-        // Handle connection events
-        // https://mongoosejs.com/docs/connections.html#connection-events
-        // https://nodejs.org/api/events.html#events_class_eventemitter
-
+     
         // Handle the unable to connect scenario
-        // https://nodejs.org/api/events.html#events_emitter_on_eventname_listener
         db.on('error', (error) => {
           console.log('Connection error:', error.message);
           reject(error);
         });
 
         // Handle the open/connected event scenario
-        // https://nodejs.org/api/events.html#events_emitter_once_eventname_listener
         db.once('open', () => {
           console.log('Connection to the database was successful');
           Cars = db.model("Vehicle", carSchema, "vehicles");          
