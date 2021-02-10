@@ -1,21 +1,19 @@
 
 // ################################################################################
-// Data service operations setup
+// Data service operations
 
 const mongoose = require('mongoose');
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
-// Load the schemas...
 
-// Data entities; the standard format is:
+// Data entities
 const carSchema = require('./schema.js');
-// Add others as needed
+
 
 
 // ################################################################################
-// Define the functions that can be called by server.js
 
 module.exports = function () {
 
@@ -33,29 +31,16 @@ module.exports = function () {
         // Create connection to the database
         console.log('Attempting to connect to the database...');
 
-        // The following works for localhost...
-        // Replace the database name with your own value
         const uri = "";   // const uri = "private_cluster_uri";
         mongoose.connect(uri, {dbName: 'db-a1', connectTimeoutMS: 5000, useUnifiedTopology: true });
         
-        // This one works for MongoDB Atlas...
-        // (coming soon)
-
-        // From https://mongoosejs.com/docs/connections.html
-        // Mongoose creates a default connection when you call mongoose.connect(). 
-        // You can access the default connection using mongoose.connection.
         var db = mongoose.connection;
         
-        // Handle connection events...
+        // Handle connection events
         // https://mongoosejs.com/docs/connections.html#connection-events
-        // The data type of a connection event is string
-        // And more than one connection event may be emitted during execution
-
-        // FYI the Node.js EventEmitter class docs is here...
         // https://nodejs.org/api/events.html#events_class_eventemitter
 
         // Handle the unable to connect scenario
-        // "on" is a Node.js method in the EventEmitter class
         // https://nodejs.org/api/events.html#events_emitter_on_eventname_listener
         db.on('error', (error) => {
           console.log('Connection error:', error.message);
@@ -63,7 +48,6 @@ module.exports = function () {
         });
 
         // Handle the open/connected event scenario
-        // "once" is a Node.js method in the EventEmitter class
         // https://nodejs.org/api/events.html#events_emitter_once_eventname_listener
         db.once('open', () => {
           console.log('Connection to the database was successful');
@@ -81,8 +65,6 @@ module.exports = function () {
       return new Promise(function (resolve, reject) {
 
         // Fetch all documents
-        // During development and testing, can "limit" the returned results to a smaller number
-        // Remove that function call when deploying into production
         Cars.find()
           .sort({ make: 'asc', model: 'asc', year: 'asc' })
           .exec((error, items) => {
@@ -167,6 +149,6 @@ module.exports = function () {
 
 
 
-  } // return statement that encloses all the function members
+  }
 
 } // module.exports
