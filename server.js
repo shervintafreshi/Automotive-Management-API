@@ -120,7 +120,7 @@ app.delete("/api/cars/:id", (req, res) => {
 
 
 // ################################################################################
-// Resource not found (this should be at the end)
+// Resource not found
 
 app.use((req, res) => {
   res.status(404).send("Resource not found");
