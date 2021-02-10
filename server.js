@@ -129,8 +129,7 @@ app.use((req, res) => {
 
 
 // ################################################################################
-// Attempt to connect to the database, and
-// tell the app to start listening for requests
+// Attempt to connect to the database
 
 m.connect().then(() => {
   app.listen(HTTP_PORT, () => { console.log("Ready to handle requests on port " + HTTP_PORT) });
