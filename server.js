@@ -38,9 +38,8 @@ app.get("/", (req, res) => {
 // Resources available in this web API
 
 app.get("/api", (req, res) => {
-  // Here are the resources that are available for users of this web API...
   const links = [];
-  // This app's resources...
+  // App Resources
   links.push({ "rel": "collection", "href": "/api/cars", "methods": "GET,POST" });
   const linkObject = { 
     "apiName": "Vehicle Web API",
